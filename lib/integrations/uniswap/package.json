@@ -1,0 +1,17 @@
+{
+  "name": "@workspace/integrations-uniswap",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@workspace/cirq-config": "workspace:*",
+    "@workspace/integrations-shared": "workspace:*",
+    "viem": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:"
+  }
+}

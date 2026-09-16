@@ -1,0 +1,21 @@
+{
+  "name": "@workspace/integrations-longbow",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@workspace/cirq-config": "workspace:*",
+    "@workspace/integrations-shared": "workspace:*",
+    "viem": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "vitest": "^3.2.4"
+  }
+}

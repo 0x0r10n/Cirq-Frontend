@@ -1,0 +1,66 @@
+{
+  "rpc": {
+    "url": "⚠️ FILL IN — Alchemy (or ZeroDev) RPC URL for Robinhood Chain 4663",
+    "bundlerUrl": "⚠️ FILL IN — ERC-4337 bundler URL for chain 4663",
+    "paymasterUrl": "⚠️ FILL IN — paymaster URL for chain 4663"
+  },
+  "cirq": {
+    "registry": "⚠️ FILL IN — CirqRegistry address, from running contracts/script/Deploy.s.sol",
+    "policy": "⚠️ FILL IN — CirqAgentPolicy address, from running contracts/script/Deploy.s.sol"
+  },
+  "tokens": {
+    "USDG": {
+      "address": "⚠️ FILL IN — USDG address from the chain 4663 explorer",
+      "decimals": "⚠️ FILL IN — confirm USDG decimals on the chain explorer"
+    },
+    "stocks": [
+      {
+        "symbol": "⚠️ FILL IN — e.g. AAPL",
+        "address": "⚠️ FILL IN — stock token address from the chain explorer",
+        "decimals": "⚠️ FILL IN — confirm decimals on the chain explorer",
+        "uiMultiplier": "⚠️ FILL IN — confirm any UI display multiplier, else 1",
+        "poolAllowlisted": false
+      }
+    ]
+  },
+  "chainlink": {
+    "feeds": [
+      {
+        "asset": "⚠️ FILL IN — e.g. ETH/USD",
+        "address": "⚠️ FILL IN — Chainlink feed address from the feed registry for chain 4663"
+      }
+    ]
+  },
+  "protocols": {
+    "morpho": {
+      "core": "⚠️ FILL IN — Morpho Blue core contract address for chain 4663",
+      "abiPath": "lib/integrations/abis/morpho-blue.json",
+      "markets": [
+        {
+          "id": "⚠️ FILL IN — Morpho market id",
+          "ltvCapBps": "⚠️ FILL IN — read the real LTV cap on-chain per market (~63% typical, verify)"
+        }
+      ]
+    },
+    "longbow": {
+      "mcpUrl": "⚠️ FILL IN — Longbow MCP endpoint URL",
+      "markets": [
+        {
+          "id": "⚠️ FILL IN — Longbow market id (~42 isolated markets)",
+          "address": "⚠️ FILL IN — Longbow market address",
+          "ltvCapBps": "⚠️ FILL IN — read the real LTV cap on-chain per market (~63% typical, verify)"
+        }
+      ]
+    },
+    "loopr": {
+      "router": "⚠️ FILL IN — Loopr router address",
+      "abiPath": "lib/integrations/abis/loopr-router.json"
+    },
+    "uniswap": {
+      "poolManager": "⚠️ FILL IN — Uniswap v4 PoolManager address for chain 4663",
+      "universalRouter": "⚠️ FILL IN — Uniswap Universal Router address for chain 4663",
+      "poolManagerAbiPath": "lib/integrations/abis/uniswap-v4-pool-manager.json",
+      "universalRouterAbiPath": "lib/integrations/abis/uniswap-universal-router.json"
+    }
+  }
+}

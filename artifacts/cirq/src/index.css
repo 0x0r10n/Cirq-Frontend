@@ -203,7 +203,6 @@ h3 { font-size: 14px; letter-spacing: -.02em; margin-bottom: 6px; }
 .connect-footnote strong { color: hsl(153 31% 28%); font-weight: 500; }
 .connect-visual { position: relative; min-height: 100dvh; overflow: hidden; isolation: isolate; background: hsl(80 35% 68%); }
 .connect-visual:before { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, hsl(153 39% 8% / .12), transparent 20%), linear-gradient(180deg, hsl(80 55% 90% / .08), hsl(150 30% 12% / .18)); pointer-events: none; }
-.connect-visual:after { content: "Cirq / intelligence for the next move"; position: absolute; z-index: 2; right: 30px; bottom: 27px; padding: 9px 12px; border: 1px solid hsl(0 0% 100% / .42); border-radius: 999px; color: hsl(0 0% 100% / .88); background: hsl(150 24% 14% / .19); backdrop-filter: blur(14px); font: 10px var(--app-font-mono); }
 .connect-visual img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center center; filter: saturate(.88) contrast(.98); transform: scale(1.015); }
 .mobile-nav { display: none; }
 @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }

@@ -207,13 +207,22 @@
 }
 
 @media (max-width: 1023px) {
+  .cirq-landing {
+    position: relative;
+  }
+
   .cirq-landing-frame {
-    grid-template-columns: 1fr;
+    position: relative;
+    display: block;
+    min-height: 100vh;
   }
 
   .cirq-landing-copy {
-    min-height: 69vh;
+    z-index: 2;
+    min-height: 100vh;
     padding: 27px 23px 30px;
+    background: linear-gradient(135deg, rgba(233, 235, 227, 0.76), rgba(233, 235, 227, 0.54));
+    backdrop-filter: blur(18px) saturate(1.08);
   }
 
   .cirq-landing-copy::after {
@@ -231,12 +240,18 @@
   }
 
   .cirq-landing-visual {
-    min-height: 52vh;
-    max-height: 650px;
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    min-height: 100%;
+    max-height: none;
   }
 
   .cirq-landing-visual img {
-    object-position: center 35%;
+    object-position: center center;
+    filter: blur(18px) saturate(0.78) contrast(0.94);
+    opacity: 0.72;
+    transform: scale(1.08);
   }
 }
 

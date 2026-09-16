@@ -221,7 +221,7 @@
     z-index: 2;
     min-height: 100vh;
     padding: 27px 23px 30px;
-    background: linear-gradient(135deg, rgba(233, 235, 227, 0.76), rgba(233, 235, 227, 0.54));
+    background: linear-gradient(135deg, rgba(233, 235, 227, 0.72), rgba(233, 235, 227, 0.50));
     backdrop-filter: blur(18px) saturate(1.08);
   }
 

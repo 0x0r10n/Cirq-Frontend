@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Cirq"
+description = "A liquid-glass DeFi agent interface for exploring curated yield opportunities, monitoring positions, and preparing safer on-chain strategies."
+version = "1.0.0"
+id = "artifacts/cirq"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18213
+
+[services.development]
+run = "pnpm --filter @workspace/cirq run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/cirq", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/cirq/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18213"
+BASE_PATH = "/"

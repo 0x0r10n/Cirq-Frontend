@@ -150,6 +150,24 @@ h3 { font-size: 14px; letter-spacing: -.02em; margin-bottom: 6px; }
 .composer input:focus, .setting-input:focus { border-color: hsl(var(--primary)); }
 .send-button, .primary-button { border: 1px solid hsl(81 65% 32%); color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); border-radius: 12px; padding: 0 15px; font-size: 12px; font-weight: 800; transition: transform .2s ease, filter .2s ease; }
 .send-button:hover, .primary-button:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.connect-button {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 9px; overflow: hidden;
+  min-height: 49px; padding: 0 21px; border: 1px solid hsl(0 0% 100% / .8); border-radius: 16px;
+  color: hsl(153 30% 13%); background:
+    linear-gradient(135deg, hsl(0 0% 100% / .73), hsl(80 80% 72% / .5) 48%, hsl(81 75% 49% / .8));
+  box-shadow: 0 12px 22px hsl(81 58% 31% / .18), inset 0 1px 0 hsl(0 0% 100% / .9), inset 0 -8px 16px hsl(81 61% 35% / .14);
+  backdrop-filter: blur(18px) saturate(1.2); text-shadow: 0 1px 0 hsl(0 0% 100% / .55);
+}
+.connect-button:before {
+  content: ""; position: absolute; width: 82px; height: 82px; left: 9px; top: -48px; border-radius: 50%;
+  background: hsl(0 0% 100% / .42); filter: blur(9px); pointer-events: none;
+}
+.connect-button svg, .connect-button { transition: transform .25s ease, filter .25s ease, box-shadow .25s ease; }
+.connect-button:hover {
+  filter: none; transform: translateY(-2px); box-shadow: 0 15px 28px hsl(81 58% 31% / .23), inset 0 1px 0 hsl(0 0% 100% / .95), inset 0 -8px 16px hsl(81 61% 35% / .16);
+}
+.connect-button:hover svg { transform: rotate(-8deg) scale(1.08); }
+.connect-button:active { transform: translateY(0) scale(.98); }
 .secondary-button { border: 1px solid hsl(var(--border)); color: hsl(var(--foreground)); background: hsl(0 0% 100% / .42); border-radius: 11px; padding: 10px 13px; font-size: 12px; font-weight: 700; }
 .secondary-button:hover { background: hsl(0 0% 100% / .72); }
 .transaction-preview { margin-top: 15px; padding: 14px; border-radius: 15px; background: hsl(150 22% 81% / .55); border: 1px solid hsl(148 18% 66%); }

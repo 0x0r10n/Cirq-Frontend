@@ -239,7 +239,7 @@ function Settings() {
 }
 
 function Connect({ onConnect }: { onConnect: () => void }) {
-  return <main className="connect-screen"><section className="glass-card connect-card"><div><div className="connect-mark"><img src="/assets/cirq-mark.png" alt="Cirq" /><img src="/assets/cirq-wordmark.png" alt="Cirq" /></div><p className="eyebrow">A clearer way into DeFi</p><h1>Explore yield without losing the plot.</h1><p className="subtle">Connect a wallet to let Cirq curate opportunities, watch your positions, and prepare the next move for your review.</p><button className="primary-button" style={{ padding: '13px 18px' }} onClick={onConnect}><Wallet size={15} style={{ verticalAlign: 'middle', marginRight: 8 }} /> Connect wallet</button></div><img className="hero-logo" src="/assets/cirq-mark.png" alt="Glossy Cirq loop mark" /></section></main>;
+  return <main className="connect-screen"><section className="glass-card connect-card"><div><div className="connect-mark"><img src="/assets/cirq-mark.png" alt="Cirq" /><img src="/assets/cirq-wordmark.png" alt="Cirq" /></div><p className="eyebrow">A clearer way into DeFi</p><h1>Explore yield without losing the plot.</h1><p className="subtle">Connect a wallet to let Cirq curate opportunities, watch your positions, and prepare the next move for your review.</p><button className="primary-button connect-button" onClick={onConnect}><Wallet size={15} /> Connect wallet</button></div><img className="hero-logo" src="/assets/cirq-mark.png" alt="Glossy Cirq loop mark" /></section></main>;
 }
 
 function App() {

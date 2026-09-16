@@ -11,13 +11,22 @@
   },
   "dependencies": {
     "@workspace/api-zod": "workspace:*",
+    "@workspace/cirq-agent": "workspace:*",
+    "@workspace/cirq-config": "workspace:*",
     "@workspace/db": "workspace:*",
+    "@workspace/integrations-longbow": "workspace:*",
+    "@workspace/integrations-loopr": "workspace:*",
+    "@workspace/integrations-morpho": "workspace:*",
+    "@workspace/integrations-shared": "workspace:*",
+    "@workspace/integrations-uniswap": "workspace:*",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "drizzle-orm": "catalog:",
     "express": "^5.2.1",
     "pino": "^9.14.0",
-    "pino-http": "^10.5.0"
+    "pino-http": "^10.5.0",
+    "viem": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",

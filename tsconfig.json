@@ -11,6 +11,30 @@
     },
     {
       "path": "./lib/api-zod"
+    },
+    {
+      "path": "./lib/cirq-config"
+    },
+    {
+      "path": "./lib/integrations/shared"
+    },
+    {
+      "path": "./lib/integrations/morpho"
+    },
+    {
+      "path": "./lib/integrations/longbow"
+    },
+    {
+      "path": "./lib/integrations/loopr"
+    },
+    {
+      "path": "./lib/integrations/uniswap"
+    },
+    {
+      "path": "./lib/cirq-risk"
+    },
+    {
+      "path": "./lib/cirq-agent"
     }
   ]
 }

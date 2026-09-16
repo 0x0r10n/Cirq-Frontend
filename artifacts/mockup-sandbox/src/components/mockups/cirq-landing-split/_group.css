@@ -249,7 +249,7 @@
 
   .cirq-landing-visual img {
     object-position: center center;
-    filter: blur(18px) saturate(0.78) contrast(0.94);
+    filter: saturate(0.88) contrast(0.98);
     opacity: 0.72;
     transform: scale(1.08);
   }

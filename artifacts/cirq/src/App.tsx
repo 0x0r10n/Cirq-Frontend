@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, Route, Switch, useLocation } from 'wouter';
 import {
   Activity, ArrowUpRight, Bot, ChevronRight, CircleHelp, Eye,
@@ -41,6 +41,13 @@ const positions: Position[] = [
 ];
 
 const shortAddress = '0x8F3c…91aD';
+const landingMessages = [
+  "Every action is simulated before it's signed. Cirq shows you the outcome first — never the other way around.",
+  'The agent proposes. You dispose. Cirq can prepare a move. Only your wallet can send it.',
+  'Not every market is real. Cirq filters out the noise before it ever reaches you.',
+  'Prices come from Chainlink, not a rumor in a pool. Every risk number traces back to a source you can check.',
+  'Revoke access in one tap, any time. Your permissions are yours to end whenever you choose.',
+];
 
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
@@ -238,8 +245,41 @@ function Settings() {
   );
 }
 
+function TypewriterFootnote() {
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [visibleText, setVisibleText] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const message = landingMessages[messageIndex];
+    const finishedTyping = !deleting && visibleText === message;
+    const finishedDeleting = deleting && visibleText.length === 0;
+    const timeout = window.setTimeout(() => {
+      if (finishedDeleting) {
+        setDeleting(false);
+        setMessageIndex((current) => (current + 1) % landingMessages.length);
+      } else if (deleting) {
+        setVisibleText(message.slice(0, visibleText.length - 1));
+      } else if (finishedTyping) {
+        setDeleting(true);
+      } else {
+        setVisibleText(message.slice(0, visibleText.length + 1));
+      }
+    }, finishedTyping ? 3200 : deleting ? 48 : 72);
+
+    return () => window.clearTimeout(timeout);
+  }, [deleting, messageIndex, visibleText]);
+
+  return (
+    <p className="connect-footnote" aria-live="polite">
+      <span className="typewriter-copy">{visibleText}</span>
+      <span className="typewriter-caret" aria-hidden="true" />
+    </p>
+  );
+}
+
 function Connect({ onConnect }: { onConnect: () => void }) {
-  return <main className="connect-screen"><div className="connect-frame"><section className="connect-copy"><div className="connect-brand" aria-label="Cirq"><img src="/assets/cirq-mark.png" alt="" /><img src="/assets/cirq-wordmark.png" alt="Cirq" /></div><div className="connect-content"><p className="connect-eyebrow">A clearer way into DeFi</p><h1>Explore yield without losing the plot.</h1><p className="connect-description">Connect a wallet to let Cirq curate opportunities, watch your positions, and prepare the next move for your review.</p><button className="primary-button connect-button" onClick={onConnect}><Wallet size={15} /> Connect wallet</button></div><p className="connect-footnote"><strong>Built for thoughtful on-chain decisions.</strong><br />Cirq is a non-US interface. You stay in control of every signature.</p></section><section className="connect-visual" aria-label="Cirq intelligence visual"><img src="/assets/cirq-eye.png" alt="A luminous green robotic eye" /></section></div></main>;
+  return <main className="connect-screen"><div className="connect-frame"><section className="connect-copy"><div className="connect-brand" aria-label="Cirq"><img src="/assets/cirq-mark.png" alt="" /><img src="/assets/cirq-wordmark.png" alt="Cirq" /></div><div className="connect-content"><p className="connect-eyebrow">A clearer way into DeFi</p><h1>Explore yield without losing the plot.</h1><p className="connect-description">Connect a wallet to let Cirq curate opportunities, watch your positions, and prepare the next move for your review.</p><button className="primary-button connect-button" onClick={onConnect}><Wallet size={15} /> Connect wallet</button></div><TypewriterFootnote /></section><section className="connect-visual" aria-label="Cirq intelligence visual"><img src="/assets/cirq-eye.png" alt="A luminous green robotic eye" /></section></div></main>;
 }
 
 function App() {

@@ -280,3 +280,142 @@
 @keyframes typewriter-blink {
   50% { opacity: 0; }
 }
+
+/* Reference landing direction: dark glass, lime glow, and an image-led hero. */
+.cirq-landing {
+  background: #030703;
+  color: #f4f8e8;
+}
+
+.cirq-landing-frame {
+  background: #030703;
+}
+
+.cirq-landing-copy {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(157, 221, 59, 0.12), transparent 23rem),
+    linear-gradient(145deg, #071108, #030703 72%);
+  border-right: 1px solid rgba(161, 226, 66, 0.16);
+}
+
+.cirq-landing-copy::after {
+  background: rgba(155, 224, 49, 0.16);
+}
+
+.cirq-landing-brand img {
+  filter: brightness(1.28) saturate(1.15);
+}
+
+.cirq-landing-content {
+  max-width: 540px;
+  padding: 7vh 0 8vh;
+}
+
+.cirq-landing-hero-wordmark {
+  display: block;
+  width: clamp(142px, 15vw, 205px);
+  height: auto;
+  margin-bottom: clamp(32px, 5vw, 58px);
+  filter: brightness(1.45) saturate(1.25) drop-shadow(0 0 18px rgba(160, 236, 52, 0.28));
+}
+
+.cirq-landing h1 {
+  max-width: 500px;
+  color: #f7faef;
+  font-size: clamp(44px, 5.2vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.075em;
+  line-height: 0.96;
+}
+
+.cirq-landing-description {
+  max-width: 380px;
+  margin: 22px 0 28px;
+  color: rgba(231, 242, 216, 0.68);
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.5;
+}
+
+.cirq-landing-button {
+  width: min(100%, 265px);
+  justify-content: flex-start;
+  min-height: 52px;
+  border-color: rgba(226, 255, 168, 0.7);
+  border-radius: 16px;
+  color: #081108;
+  background: linear-gradient(135deg, #e5ff99, #a9ed3b 58%, #6f9f17);
+  box-shadow: 0 14px 32px rgba(111, 184, 27, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -8px 18px rgba(43, 87, 5, 0.16);
+}
+
+.cirq-wallet-icon {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border-radius: 6px;
+  color: #cfff78;
+  background: #101b0d;
+  font-size: 11px;
+}
+
+.cirq-button-arrow {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #dfffac;
+  background: rgba(8, 23, 7, 0.72);
+  font-size: 16px;
+}
+
+.cirq-landing-footnote {
+  color: rgba(211, 231, 192, 0.58);
+}
+
+.cirq-landing-visual {
+  background: #0b1809;
+}
+
+.cirq-landing-visual::before {
+  background:
+    linear-gradient(90deg, rgba(1, 7, 2, 0.52), transparent 35%),
+    linear-gradient(180deg, rgba(8, 25, 4, 0.1), rgba(1, 5, 2, 0.58));
+}
+
+.cirq-landing-visual img {
+  filter: saturate(1.04) contrast(1.06) brightness(0.7);
+}
+
+@media (max-width: 1023px) {
+  .cirq-landing-copy {
+    background: linear-gradient(180deg, rgba(2, 10, 4, 0.42), rgba(2, 7, 3, 0.74));
+    border-right: 0;
+    backdrop-filter: saturate(1.08);
+  }
+
+  .cirq-landing-content {
+    padding: 8vh 0 7vh;
+  }
+
+  .cirq-landing-hero-wordmark {
+    width: 170px;
+    margin-bottom: 42px;
+  }
+
+  .cirq-landing h1 {
+    max-width: 360px;
+    font-size: clamp(40px, 12vw, 58px);
+  }
+
+  .cirq-landing-description {
+    max-width: 320px;
+    color: rgba(239, 247, 226, 0.74);
+  }
+
+  .cirq-landing-visual img {
+    opacity: 1;
+    filter: saturate(1.04) contrast(1.06) brightness(0.7);
+  }
+}

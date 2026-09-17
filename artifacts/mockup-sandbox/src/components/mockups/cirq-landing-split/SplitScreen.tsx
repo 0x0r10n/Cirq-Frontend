@@ -53,15 +53,15 @@ export function SplitScreen() {
           </div>
 
           <div className="cirq-landing-content">
-            <p className="cirq-landing-eyebrow">A clearer way into DeFi</p>
-            <h1>Explore yield without losing the plot.</h1>
+            <img className="cirq-landing-hero-wordmark" src="/__mockup/images/cirq-wordmark.png" alt="Cirq" />
+            <h1>Save. Earn.<br />Win Real Stocks.</h1>
             <p className="cirq-landing-description">
-              Connect a wallet to let Cirq curate opportunities, watch your
-              positions, and prepare the next move for your review.
+              AI-managed yield, liquidity pathfinding &amp; loop design on Robinhood Chain.
             </p>
             <button className="cirq-landing-button" type="button">
-              <span aria-hidden="true">◌</span>
-              Connect wallet
+              <span className="cirq-wallet-icon" aria-hidden="true">▣</span>
+              Connect Wallet
+              <span className="cirq-button-arrow" aria-hidden="true">↗</span>
             </button>
           </div>
 

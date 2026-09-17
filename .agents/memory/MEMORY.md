@@ -1,0 +1,1 @@
+- [Screen-by-screen workspace styling](chat-layout-scope.md) — connected workspace redesigns should be route-scoped until each screen is intentionally updated.

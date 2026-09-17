@@ -110,7 +110,8 @@ function Topbar({ onDisconnect }: { onDisconnect: () => void }) {
 }
 
 function Layout({ children, onDisconnect }: { children: React.ReactNode; onDisconnect: () => void }) {
-  return <div className="app-shell"><Navigation connected onDisconnect={onDisconnect} /><main className="main-shell"><Topbar onDisconnect={onDisconnect} />{children}</main></div>;
+  const [location] = useLocation();
+  return <div className={`app-shell ${location === '/' ? 'chat-layout' : ''}`}><Navigation connected onDisconnect={onDisconnect} /><main className="main-shell"><Topbar onDisconnect={onDisconnect} />{children}</main></div>;
 }
 
 function LoopVisual() {

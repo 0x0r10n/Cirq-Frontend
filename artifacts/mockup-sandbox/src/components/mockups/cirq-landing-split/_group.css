@@ -67,7 +67,8 @@
 
 .cirq-landing-brand img:last-child {
   width: 77px;
-  height: 34px;
+  height: 31px;
+  object-fit: contain;
 }
 
 .cirq-landing-content {

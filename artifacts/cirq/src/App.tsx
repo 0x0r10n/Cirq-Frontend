@@ -125,11 +125,7 @@ function LoopVisual() {
 
 function AgentChat() {
   const [text, setText] = useState('');
-  const [messages, setMessages] = useState([
-    { body: 'Good morning. I found two measured opportunities that fit your 60-day horizon.', user: false, time: '09:41' },
-    { body: 'Show me the safest one.', user: true, time: '09:42' },
-    { body: 'Stable Loop on Aave is the cleanest fit. It is verified, liquid, and currently earning 5.84%.', user: false, time: '09:42' },
-  ]);
+  const [messages, setMessages] = useState([{ body: 'I found 3 opportunities worth your attention.', user: false, time: '09:41' }]);
   const [preview, setPreview] = useState(false);
   const send = () => {
     const trimmed = text.trim();
@@ -138,32 +134,19 @@ function AgentChat() {
     setText('');
     if (/deposit|move|prepare|stable/i.test(trimmed)) setPreview(true);
   };
+  const ask = (prompt: string) => setText(prompt);
   return (
-    <div className="chat-page">
-      <div className="chat-intro">
-        <div>
-          <p className="eyebrow">Your on-chain co-pilot</p>
-          <h1>What should we look at?</h1>
-          <p className="subtle">Ask Cirq to scan opportunities, explain risk, or prepare a move. Nothing is signed without you.</p>
-        </div>
-        <div className="chat-intro-mark"><img src="/assets/cirq-mark.png" alt="Cirq" /><span>Always simulate first</span></div>
-      </div>
-      <div className="chat-workspace">
-        <section className="glass-card chat-card chat-thread">
-          <div className="chat-thread-head"><div className="agent-avatar"><Bot size={18} /></div><div><strong>Cirq agent</strong><span><i /> Monitoring your workspace</span></div><button className="tiny-action">New thread</button></div>
-          <div className="messages">
-            {messages.map((message, index) => <div key={`${message.time}-${index}`} className={`message ${message.user ? 'user' : ''}`}>{!message.user && <span className="message-author">Cirq</span>}{message.body}<span className="message-time">{message.time}</span></div>)}
-          </div>
-          {preview && <div className="transaction-preview">
-            <div className="card-head" style={{ marginBottom: 4 }}><h3>Transaction preview</h3><ShieldCheck size={16} /></div>
-            <div className="transaction-row"><span>Action</span><strong>Supply USDC</strong></div><div className="transaction-row"><span>Amount</span><strong>2,500.00 USDC</strong></div><div className="transaction-row"><span>Route</span><strong>Aave · Ethereum</strong></div>
-            <div className="transaction-actions"><button className="secondary-button" onClick={() => setPreview(false)}>Dismiss</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Simulation passed. The transaction is ready whenever you are.', user: false, time: 'now' }])}>Simulate</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Signing is ready in your wallet. Review the details before confirming.', user: false, time: 'now' }])}>Sign</button></div>
-          </div>}
-          <div className="composer"><input value={text} onChange={(event) => setText(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.nativeEvent.isComposing && event.keyCode !== 229) send(); }} placeholder="Ask Cirq anything..." aria-label="Message Cirq" /><button className="send-button" onClick={send} aria-label="Send message"><ArrowUpRight size={16} /></button></div>
-          <p className="composer-note">Cirq can prepare, never submit. Press Enter to send.</p>
-        </section>
-        <aside className="chat-context glass-card"><p className="eyebrow">Workspace context</p><h2>Conservative</h2><p className="subtle">Your current preference prioritizes verified protocols, deep liquidity, and measured exposure.</p><div className="context-divider" /><div className="context-row"><span>Portfolio</span><strong>$23,505.84</strong></div><div className="context-row"><span>30d net change</span><strong className="positive">+$412.80</strong></div><div className="context-row"><span>Active positions</span><strong>3 monitored</strong></div><div className="context-divider" /><p className="eyebrow">Suggested prompts</p><button className="prompt-chip" onClick={() => setText('Show me the safest opportunity')}>Show me the safest opportunity <ChevronRight size={14} /></button><button className="prompt-chip" onClick={() => setText('Explain my position health')}>Explain my position health <ChevronRight size={14} /></button><button className="prompt-chip" onClick={() => setText('Prepare a deposit')}>Prepare a deposit <ChevronRight size={14} /></button></aside>
-      </div>
+    <div className="chat-page cirq-mobile-home">
+      <div className="cirq-app-head"><Brand compact /><button className="profile-orb" aria-label="Open agent profile"><Bot size={18} /></button></div>
+      <div className="chat-intro"><div><p className="eyebrow">Good evening.</p><h1>What are we doing today?</h1><p className="subtle">Your agent, your rules.</p></div></div>
+      <div className="quick-actions" aria-label="Quick actions"><button onClick={() => ask('Find the best yield')}><Sparkles size={16} />Find<br />yield</button><button onClick={() => ask('Explore my loops')}><Activity size={16} />Explore<br />loops</button><button onClick={() => ask('Scan markets')}><Search size={16} />Scan<br />markets</button></div>
+      <section className="chat-card chat-thread glass-card">
+        <div className="messages">{messages.map((message, index) => <div key={`${message.time}-${index}`} className={`message ${message.user ? 'user' : ''}`}>{message.body}<span className="message-time">{message.time}</span></div>)}</div>
+        <div className="yield-list"><article><div className="protocol-icon">A</div><div><strong>AAPL / USDG</strong><small>8.42% APY · Low Risk</small></div><ArrowUpRight size={15} /></article><article><div className="protocol-icon">N</div><div><strong>NVDA / USDG</strong><small>7.91% APY · Medium</small></div><ArrowUpRight size={15} /></article><article><div className="protocol-icon">T</div><div><strong>TSLA / USDG</strong><small>6.28% APY · Low Risk</small></div><ArrowUpRight size={15} /></article></div>
+        {preview && <div className="transaction-preview"><div className="card-head"><h3>Transaction preview</h3><ShieldCheck size={16} /></div><div className="transaction-row"><span>Action</span><strong>Supply USDC</strong></div><div className="transaction-row"><span>Route</span><strong>Aave · Ethereum</strong></div><div className="transaction-actions"><button className="secondary-button" onClick={() => setPreview(false)}>Dismiss</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Simulation passed.', user: false, time: 'now' }])}>Simulate</button></div></div>}
+        <div className="composer"><input value={text} onChange={(event) => setText(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.nativeEvent.isComposing && event.keyCode !== 229) send(); }} placeholder="Ask Cirq anything..." aria-label="Message Cirq" /><button className="send-button" onClick={send} aria-label="Send message"><ArrowUpRight size={16} /></button></div>
+      </section>
+      <div className="chat-safety"><ShieldCheck size={14} /> Nothing moves without your approval.</div>
     </div>
   );
 }

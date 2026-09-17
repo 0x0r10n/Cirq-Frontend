@@ -614,3 +614,26 @@ h3 { font-size: 14px; letter-spacing: -.02em; margin-bottom: 6px; }
 .prompt-chip:hover { color: hsl(153 40% 30%); }
 @media (max-width: 900px) { .chat-workspace { grid-template-columns: 1fr; }.chat-context { display: none; }.chat-thread { min-height: 590px; } }
 @media (max-width: 650px) { .chat-page { padding: 20px 18px 40px; }.chat-intro { align-items: start; }.chat-intro-mark { display: none; }.chat-thread { padding: 17px 16px 14px; }.chat-thread .message { max-width: 88%; } }
+
+/* Agent home follows the mobile reference: compact chrome, luminous lime surfaces, and clear yield cards. */
+.cirq-mobile-home { max-width: 760px; padding-top: 22px; }
+.cirq-app-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 42px; }
+.cirq-app-head .brand-lockup { padding: 0; gap: 0; }
+.cirq-app-head .brand-mark { width: 36px; height: 36px; filter: brightness(1.5) drop-shadow(0 0 12px hsl(80 91% 60% / .5)); }
+.profile-orb { width: 38px; height: 38px; display: grid; place-items: center; color: hsl(80 91% 60%); border: 1px solid hsl(80 91% 60% / .35); border-radius: 50%; background: radial-gradient(circle at 35% 30%, hsl(80 91% 60% / .25), hsl(128 31% 9%)); box-shadow: 0 0 22px hsl(80 91% 60% / .17); }
+.cirq-mobile-home .chat-intro { margin-bottom: 24px; }
+.cirq-mobile-home .chat-intro h1 { max-width: 360px; margin-bottom: 8px; color: hsl(74 44% 95%); font-size: clamp(31px, 8vw, 48px); line-height: 1.02; }
+.cirq-mobile-home .chat-intro .eyebrow { color: hsl(74 44% 95%); font-size: 20px; margin-bottom: 3px; }
+.cirq-mobile-home .chat-intro .subtle { margin: 0; color: hsl(91 35% 83% / .68); }
+.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.quick-actions button { min-height: 72px; display: grid; place-content: center; gap: 4px; border: 1px solid hsl(80 91% 60% / .18); border-radius: 17px; color: hsl(74 44% 95%); background: linear-gradient(145deg, hsl(128 31% 15%), hsl(120 43% 5%)); font-size: 12px; font-weight: 700; line-height: 1.1; text-align: left; }
+.quick-actions button svg { color: hsl(80 91% 60%); }
+.cirq-mobile-home .chat-thread { min-height: 0; padding: 0; background: transparent; border: 0; box-shadow: none; }
+.cirq-mobile-home .messages { margin: 0 0 15px; }
+.cirq-mobile-home .message { max-width: 78%; padding: 14px 16px; color: hsl(74 44% 95%); background: linear-gradient(145deg, hsl(128 31% 16%), hsl(120 43% 8%)); border-color: hsl(80 91% 60% / .12); border-radius: 16px 16px 16px 4px; font-size: 13px; }
+.yield-list { display: grid; gap: 9px; margin-bottom: 16px; }
+.yield-list article { display: flex; align-items: center; gap: 11px; min-height: 67px; padding: 11px 13px; border: 1px solid hsl(80 91% 60% / .22); border-radius: 17px; background: linear-gradient(145deg, hsl(128 31% 15%), hsl(120 43% 5%)); box-shadow: inset 0 1px 0 hsl(80 100% 88% / .08); }
+.yield-list article > div:nth-child(2) { flex: 1; }.yield-list strong { display: block; color: hsl(74 44% 95%); font-size: 13px; }.yield-list small { display: block; margin-top: 5px; color: hsl(80 91% 60%); font-size: 10px; }.yield-list article > svg { color: hsl(74 44% 95% / .75); }.yield-list .protocol-icon { width: 34px; height: 34px; border-radius: 50%; color: hsl(120 43% 5%); background: hsl(74 91% 74%); font-weight: 800; }
+.cirq-mobile-home .composer { margin-top: 0; padding: 0; }.cirq-mobile-home .composer input { min-height: 48px; border-radius: 22px; padding-left: 17px; background: hsl(128 31% 10%); }.cirq-mobile-home .send-button { width: 42px; height: 42px; align-self: center; border-radius: 50%; }.chat-safety { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 18px; color: hsl(91 35% 83% / .48); font: 10px var(--app-font-mono); }.chat-safety svg { color: hsl(80 91% 60%); }
+@media (min-width: 701px) { .cirq-mobile-home { margin-left: auto; margin-right: auto; } }
+@media (max-width: 650px) { .cirq-mobile-home { padding: 20px 18px 33px; }.cirq-app-head { margin-bottom: 39px; }.cirq-mobile-home .chat-intro h1 { font-size: 34px; }.quick-actions button { min-height: 68px; padding: 8px; }.cirq-mobile-home .message { max-width: 92%; } }

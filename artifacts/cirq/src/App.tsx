@@ -1,10 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Route, Switch, useLocation } from 'wouter';
-import {
-  Activity, ArrowUpRight, Bot, ChevronRight, CircleHelp, Eye,
-  LockKeyhole, LogOut, MessageCircle, Search, Settings2, ShieldCheck,
-  Sparkles, Wallet, X,
-} from 'lucide-react';
+import { Activity, ArrowUpRight, Bot, ChevronRight, Circle as CircleHelp, Eye, LockKeyhole, LogOut, MessageCircle, Search, Settings2, ShieldCheck, Sparkles, Wallet, X } from 'lucide-react';
 
 type Opportunity = {
   name: string;

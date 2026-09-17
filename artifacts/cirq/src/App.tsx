@@ -139,39 +139,30 @@ function AgentChat() {
     if (/deposit|move|prepare|stable/i.test(trimmed)) setPreview(true);
   };
   return (
-    <div className="page">
-      <section className="hero-card glass-card">
-        <div className="hero-copy">
+    <div className="chat-page">
+      <div className="chat-intro">
+        <div>
           <p className="eyebrow">Your on-chain co-pilot</p>
-          <h1>Make the next move with a little more clarity.</h1>
-          <p className="subtle">Cirq watches the surface area of DeFi so you can explore yield, understand risk, and prepare a strategy before you sign.</p>
+          <h1>What should we look at?</h1>
+          <p className="subtle">Ask Cirq to scan opportunities, explain risk, or prepare a move. Nothing is signed without you.</p>
         </div>
-        <img className="hero-logo" src="/assets/cirq-mark.png" alt="Glossy Cirq loop mark" />
-        <div className="hero-metrics">
-          <div className="metric-chip"><span>Portfolio value</span><strong>$23,505.84</strong></div>
-          <div className="metric-chip"><span>30d net change</span><strong>+$412.80</strong></div>
-          <div className="metric-chip"><span>Safety posture</span><strong>Conservative</strong></div>
-        </div>
-      </section>
-      <div className="home-grid">
-        <section className="glass-card card-pad">
-          <div className="card-head"><div><p className="eyebrow">How Cirq works</p><h2>A loop you can inspect</h2></div><span className="badge">Live</span></div>
-          <LoopVisual />
-        </section>
-        <section className="glass-card card-pad chat-card">
-          <div className="card-head"><div><p className="eyebrow">Agent thread</p><h2>Ask Cirq anything</h2></div><Bot size={19} /></div>
+        <div className="chat-intro-mark"><img src="/assets/cirq-mark.png" alt="Cirq" /><span>Always simulate first</span></div>
+      </div>
+      <div className="chat-workspace">
+        <section className="glass-card chat-card chat-thread">
+          <div className="chat-thread-head"><div className="agent-avatar"><Bot size={18} /></div><div><strong>Cirq agent</strong><span><i /> Monitoring your workspace</span></div><button className="tiny-action">New thread</button></div>
           <div className="messages">
-            {messages.map((message, index) => <div key={`${message.time}-${index}`} className={`message ${message.user ? 'user' : ''}`}>{message.body}<span className="message-time">{message.time}</span></div>)}
+            {messages.map((message, index) => <div key={`${message.time}-${index}`} className={`message ${message.user ? 'user' : ''}`}>{!message.user && <span className="message-author">Cirq</span>}{message.body}<span className="message-time">{message.time}</span></div>)}
           </div>
           {preview && <div className="transaction-preview">
             <div className="card-head" style={{ marginBottom: 4 }}><h3>Transaction preview</h3><ShieldCheck size={16} /></div>
-            <div className="transaction-row"><span>Action</span><strong>Supply USDC</strong></div>
-            <div className="transaction-row"><span>Amount</span><strong>2,500.00 USDC</strong></div>
-            <div className="transaction-row"><span>Route</span><strong>Aave · Ethereum</strong></div>
+            <div className="transaction-row"><span>Action</span><strong>Supply USDC</strong></div><div className="transaction-row"><span>Amount</span><strong>2,500.00 USDC</strong></div><div className="transaction-row"><span>Route</span><strong>Aave · Ethereum</strong></div>
             <div className="transaction-actions"><button className="secondary-button" onClick={() => setPreview(false)}>Dismiss</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Simulation passed. The transaction is ready whenever you are.', user: false, time: 'now' }])}>Simulate</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Signing is ready in your wallet. Review the details before confirming.', user: false, time: 'now' }])}>Sign</button></div>
           </div>}
-          <div className="composer"><input value={text} onChange={(event) => setText(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') send(); }} placeholder="Try “prepare a deposit”" aria-label="Message Cirq" /><button className="send-button" onClick={send} aria-label="Send message"><ArrowUpRight size={16} /></button></div>
+          <div className="composer"><input value={text} onChange={(event) => setText(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.nativeEvent.isComposing && event.keyCode !== 229) send(); }} placeholder="Ask Cirq anything..." aria-label="Message Cirq" /><button className="send-button" onClick={send} aria-label="Send message"><ArrowUpRight size={16} /></button></div>
+          <p className="composer-note">Cirq can prepare, never submit. Press Enter to send.</p>
         </section>
+        <aside className="chat-context glass-card"><p className="eyebrow">Workspace context</p><h2>Conservative</h2><p className="subtle">Your current preference prioritizes verified protocols, deep liquidity, and measured exposure.</p><div className="context-divider" /><div className="context-row"><span>Portfolio</span><strong>$23,505.84</strong></div><div className="context-row"><span>30d net change</span><strong className="positive">+$412.80</strong></div><div className="context-row"><span>Active positions</span><strong>3 monitored</strong></div><div className="context-divider" /><p className="eyebrow">Suggested prompts</p><button className="prompt-chip" onClick={() => setText('Show me the safest opportunity')}>Show me the safest opportunity <ChevronRight size={14} /></button><button className="prompt-chip" onClick={() => setText('Explain my position health')}>Explain my position health <ChevronRight size={14} /></button><button className="prompt-chip" onClick={() => setText('Prepare a deposit')}>Prepare a deposit <ChevronRight size={14} /></button></aside>
       </div>
     </div>
   );

@@ -126,53 +126,77 @@ function LoopVisual() {
 function AgentChat() {
   const [text, setText] = useState('');
   const [messages, setMessages] = useState([
-    { body: 'Good morning. I found two measured opportunities that fit your 60-day horizon.', user: false, time: '09:41' },
-    { body: 'Show me the safest one.', user: true, time: '09:42' },
-    { body: 'Stable Loop on Aave is the cleanest fit. It is verified, liquid, and currently earning 5.84%.', user: false, time: '09:42' },
+    { body: 'I found 3 opportunities worth your attention.', user: false, time: 'now' },
   ]);
   const [preview, setPreview] = useState(false);
+
   const send = () => {
     const trimmed = text.trim();
     if (!trimmed) return;
     setMessages((current) => [...current, { body: trimmed, user: true, time: 'now' }]);
     setText('');
-    if (/deposit|move|prepare|stable/i.test(trimmed)) setPreview(true);
+    if (/deposit|move|prepare|stable|yield/i.test(trimmed)) setPreview(true);
   };
+
+  const choosePrompt = (prompt: string) => {
+    setText(prompt);
+    window.setTimeout(() => document.querySelector<HTMLInputElement>('.agent-composer input')?.focus(), 0);
+  };
+
   return (
-    <div className="page">
-      <section className="hero-card glass-card">
-        <div className="hero-copy">
-          <p className="eyebrow">Your on-chain co-pilot</p>
-          <h1>Make the next move with a little more clarity.</h1>
-          <p className="subtle">Cirq watches the surface area of DeFi so you can explore yield, understand risk, and prepare a strategy before you sign.</p>
-        </div>
-        <img className="hero-logo" src="/assets/cirq-mark.png" alt="Glossy Cirq loop mark" />
-        <div className="hero-metrics">
-          <div className="metric-chip"><span>Portfolio value</span><strong>$23,505.84</strong></div>
-          <div className="metric-chip"><span>30d net change</span><strong>+$412.80</strong></div>
-          <div className="metric-chip"><span>Safety posture</span><strong>Conservative</strong></div>
-        </div>
+    <div className="agent-home">
+      <header className="agent-home-header">
+        <img src="/assets/cirq-wordmark.png" alt="Cirq" />
+        <div className="agent-header-orb"><img src="/assets/cirq-mark.png" alt="" /></div>
+      </header>
+
+      <section className="agent-welcome">
+        <p className="eyebrow">Your on-chain co-pilot</p>
+        <h1>Good evening.</h1>
+        <p>What are we doing today?</p>
       </section>
-      <div className="home-grid">
-        <section className="glass-card card-pad">
-          <div className="card-head"><div><p className="eyebrow">How Cirq works</p><h2>A loop you can inspect</h2></div><span className="badge">Live</span></div>
-          <LoopVisual />
-        </section>
-        <section className="glass-card card-pad chat-card">
-          <div className="card-head"><div><p className="eyebrow">Agent thread</p><h2>Ask Cirq anything</h2></div><Bot size={19} /></div>
-          <div className="messages">
-            {messages.map((message, index) => <div key={`${message.time}-${index}`} className={`message ${message.user ? 'user' : ''}`}>{message.body}<span className="message-time">{message.time}</span></div>)}
-          </div>
-          {preview && <div className="transaction-preview">
-            <div className="card-head" style={{ marginBottom: 4 }}><h3>Transaction preview</h3><ShieldCheck size={16} /></div>
-            <div className="transaction-row"><span>Action</span><strong>Supply USDC</strong></div>
-            <div className="transaction-row"><span>Amount</span><strong>2,500.00 USDC</strong></div>
-            <div className="transaction-row"><span>Route</span><strong>Aave · Ethereum</strong></div>
-            <div className="transaction-actions"><button className="secondary-button" onClick={() => setPreview(false)}>Dismiss</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Simulation passed. The transaction is ready whenever you are.', user: false, time: 'now' }])}>Simulate</button><button className="primary-button" onClick={() => setMessages((current) => [...current, { body: 'Signing is ready in your wallet. Review the details before confirming.', user: false, time: 'now' }])}>Sign</button></div>
-          </div>}
-          <div className="composer"><input value={text} onChange={(event) => setText(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') send(); }} placeholder="Try “prepare a deposit”" aria-label="Message Cirq" /><button className="send-button" onClick={send} aria-label="Send message"><ArrowUpRight size={16} /></button></div>
-        </section>
-      </div>
+
+      <section className="agent-actions" aria-label="Quick actions">
+        {[
+          { label: 'Find yield', prompt: 'Find me the safest yield opportunity', icon: Sparkles },
+          { label: 'Explore loops', prompt: 'Explore the best loop strategies', icon: Activity },
+          { label: 'Scan markets', prompt: 'Scan the markets for measured opportunities', icon: Search },
+        ].map(({ label, prompt, icon: Icon }) => (
+          <button key={label} className="agent-action" onClick={() => choosePrompt(prompt)}>
+            <Icon size={17} aria-hidden="true" />
+            <span>{label}</span>
+          </button>
+        ))}
+      </section>
+
+      <section className="agent-thread" aria-label="Cirq recommendations">
+        {messages.map((message, index) => (
+          <div key={`${message.time}-${index}`} className={`agent-message ${message.user ? 'user' : ''}`}>{message.body}</div>
+        ))}
+      </section>
+
+      <section className="agent-opportunities" aria-label="Recommended opportunities">
+        {opportunities.slice(0, 3).map((item) => (
+          <button key={item.name} className="agent-opportunity" onClick={() => choosePrompt(`Tell me more about ${item.name}`)}>
+            <div className={`agent-token agent-token-${item.name.toLowerCase().replaceAll(' ', '-')}`}>{item.name.slice(0, 1)}</div>
+            <div className="agent-opportunity-copy"><strong>{item.asset === 'USDC / ETH' ? 'NVDA / USDG' : `${item.name === 'Stable Loop' ? 'AAPL' : 'TSLA'} / USDG`}</strong><span>{item.protocol}</span></div>
+            <div className="agent-opportunity-metrics"><strong>{item.apy}</strong><span className={item.risk === 'Moderate' ? 'medium' : ''}>{item.risk === 'Moderate' ? 'Medium' : 'Low Risk'}</span></div>
+            <ChevronRight size={15} aria-hidden="true" />
+          </button>
+        ))}
+      </section>
+
+      {preview && <div className="agent-preview" role="status">
+        <div><ShieldCheck size={15} /><strong>Transaction preview ready</strong></div>
+        <span>Review the route before anything reaches your wallet.</span>
+        <button onClick={() => setPreview(false)} aria-label="Dismiss transaction preview"><X size={15} /></button>
+      </div>}
+
+      <form className="agent-composer" onSubmit={(event) => { event.preventDefault(); send(); }}>
+        <Sparkles size={16} aria-hidden="true" />
+        <input value={text} onChange={(event) => setText(event.target.value)} placeholder="Ask Cirq anything..." aria-label="Ask Cirq anything" />
+        <button type="submit" aria-label="Send message"><ArrowUpRight size={17} /></button>
+      </form>
     </div>
   );
 }
